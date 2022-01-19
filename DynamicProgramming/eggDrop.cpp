@@ -63,3 +63,52 @@ public:
         return solve(k,n);
     }
 };
+
+
+//using dp memorization
+
+ass Solution
+{
+    int ans[201][201];
+    private:
+    int solve(int n, int k){
+        int low, high;
+        int mn = INT_MAX;
+        if(k==0 || k==1) return k;
+        if(n==1) return k;
+        if(ans[n][k] != -1){
+            return ans[n][k];
+        }
+        else{
+            for(int i=1; i<=k; i++){
+                //egg break
+                if(ans[n-1][i-1] != -1){
+                    low = ans[n-1][i-1];
+                }
+                else{
+                    low = solve(n-1,i-1);
+                    ans[n-1][i-1] = low;
+                }
+                //egg not break
+                if(ans[n][k-i] != -1){
+                    high = ans[n][k-i];
+                }
+                else{
+                    high = solve(n,k-i);
+                    ans[n][k-i] = high;
+                }
+                int tempAns = 1+max(low,high);
+                mn = min(mn,tempAns);
+            }
+        }
+        return ans[n][k] = mn;
+    }
+    public:
+    //Function to find minimum number of attempts needed in 
+    //order to find the critical floor.
+    int eggDrop(int n, int k) 
+    {
+        memset(ans,-1,sizeof(ans));
+        return solve(n,k);
+    }
+};
