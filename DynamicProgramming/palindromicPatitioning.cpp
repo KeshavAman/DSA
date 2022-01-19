@@ -61,3 +61,40 @@ public:
         return solve(str,0,str.length()-1);
     }
 };
+
+//When strig is long or more than 1000 characters
+
+class Solution {
+int ans[2002][2002];
+private:
+bool isPalindrome(string &s, int i, int j){
+        if(i>j) return true;
+        if(s[i]!=s[j]) return false;
+        else return isPalindrome(s,i+1,j-1);
+    }
+    
+    int solve(string &s, int i, int j){
+        int res = INT_MAX;
+        int left,right;
+        
+        if(ans[i][j] != -1){
+        return ans[i][j];
+        }
+        
+        if(i>=j) return ans[i][j] = 0;
+        
+        if(isPalindrome(s,i,j)==true) return ans[i][j] = 0;
+        
+        for(int k=i; k<j; k++){
+            if(isPalindrome(s,i,k)==true){
+                res = min(res, 1+solve(s,k+1,j));
+            }
+        }
+        return ans[i][j] = res;
+    }
+public:
+    int minCut(string s) {
+        memset(ans,-1,sizeof(ans));
+        return solve(s,0,s.length()-1);
+    }
+};
