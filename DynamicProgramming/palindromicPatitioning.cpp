@@ -62,7 +62,7 @@ public:
     }
 };
 
-//When strig is long or more than 1000 characters
+//When strig is long or more than 1000 characters only leetcode
 
 class Solution {
 int ans[2002][2002];
