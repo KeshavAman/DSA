@@ -17,6 +17,7 @@ class Node{
 
 };
 
+//Inserting in BST
 Node* insertIntoBST(Node* &root, int data){
 
     //base case
@@ -44,6 +45,7 @@ void takeInput(Node* &root){
     }
 }
 
+//Level Order Traversal
 void levelOrderTraversal(Node *root){
     queue<Node*> q;
     q.push(root);
@@ -71,6 +73,7 @@ void levelOrderTraversal(Node *root){
     }
 }
 
+//Inorder Traversal
 void inOrder(Node *root){
     //base case
     if(root == NULL) return;
@@ -80,6 +83,7 @@ void inOrder(Node *root){
     inOrder(root -> right);
 }
 
+//Min Value
 Node* minVal(Node* root){
     Node* temp = root;
     while(temp -> left != NULL){
@@ -88,6 +92,7 @@ Node* minVal(Node* root){
     return temp;
 }
 
+//Max Value
 Node* maxVal(Node* root){
     Node* temp = root;
     while(temp -> right != NULL){
@@ -96,6 +101,7 @@ Node* maxVal(Node* root){
     return temp;
 }
 
+//Deletion
 Node* deleteNodeBST(Node* root, int val){
     //base case
     if(root == NULL) return root;
